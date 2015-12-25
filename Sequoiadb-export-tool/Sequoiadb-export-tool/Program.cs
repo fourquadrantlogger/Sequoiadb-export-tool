@@ -27,7 +27,7 @@ namespace Sequoiadb_export_tool
 
             foreach (string c in sh.ListCollections())
             {
-                FileStream fs = new FileStream(outfolderpath + "/" + c + ".json", FileMode.Create);
+                FileStream fs = new FileStream(outfolderpath + "\\" + c + ".json", FileMode.Create);
                 fs.WriteByte((byte)'[');
                 int count = 0;
                 DBCursor cursor = sh.findRow(
@@ -53,7 +53,7 @@ namespace Sequoiadb_export_tool
                 }
                 fs.WriteByte((byte)']');
                
-                System.Console.WriteLine("write OK" + '\t'+ outfolderpath + "/" + c + ".json" + "\n json count:"+ count + "\t" + fs.Length + " bytes");
+                System.Console.WriteLine("write OK" + '\t'+ outfolderpath + "\\" + c + ".json" + "\n json count:"+ count + "\t" + fs.Length + " bytes");
                 fs.Flush();
                 fs.Close();
             }
