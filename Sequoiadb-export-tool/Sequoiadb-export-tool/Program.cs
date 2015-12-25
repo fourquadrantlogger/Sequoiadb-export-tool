@@ -7,9 +7,12 @@ namespace Sequoiadb_export_tool
     {
         static void Main(string[] args)
         {
-            usage();
-            doing(args);
-            while(true)
+            
+            if (args.Length >= 2)
+                doing(args);
+            else
+                usage();
+            while (true)
             {
                 System.Console.Read();
             }
@@ -17,9 +20,9 @@ namespace Sequoiadb_export_tool
         static void doing(string[] args)
         {
             string outfolderpath = System.Environment.CurrentDirectory;
-            if (args.Length >= 1)
-                outfolderpath = args[0];
-            SequoiaDBHelper sh = new SequoiaDBHelper("10.249.109.185:50002");
+            
+                outfolderpath = args[1];
+            SequoiaDBHelper sh = new SequoiaDBHelper(args[0]);
 
 
             foreach (string c in sh.ListCollections())
@@ -59,11 +62,11 @@ namespace Sequoiadb_export_tool
         {
             return System.Text.Encoding.UTF8.GetBytes(db.ToString());
         }
-        static string usage()
+        static void usage()
         {
 
-            return "usage:"+
-                "Sequoiadb-export-tool.exe D://mySequoiadbPath";
+            System.Console.Write( "usage:" +
+                "Sequoiadb-export-tool.exe  112.12.123.12:50001   D://mySequoiadbPath");
         }
     }
 }
